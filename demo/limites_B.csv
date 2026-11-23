@@ -1,0 +1,6 @@
+parametre,limite_basse,limite_haute,unite
+Supply (V),4.75,5.25,V
+Iq (uA),40,95,uA
+Offset (mV),-2.5,2.5,mV
+Gain err (%),-0.5,0.5,%
+Tj (degC),15,60,degC

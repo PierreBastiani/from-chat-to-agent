@@ -1,0 +1,23 @@
+<section id="agent-sides">
+<h2>L’agent, des deux côtés</h2>
+<div class="duo split after" data-pause="2200">
+<div class="shot"><div class="win"><img src="img/claude-code-session.png" alt="La session Claude Code de la démo 1 vue par l’utilisateur : chaque appel d’outil sur une ligne, deux commandes refusées par les permissions, puis la réponse finale"></div><p class="band"><span>Claude Code · ce que vous voyez</span><span>nov. 2026</span></p><p class="credit">Fin du journal réel de la démo 1, mis en page</p></div>
+<div class="code small">
+<p class="chead"><span>Ce que le modèle lit</span><span>messages</span></p>
+<p class="after" data-pause="150">[user]&#160;&#160;&#160;Repère les puces hors limites…</p>
+<p class="m after" data-pause="350">[modèle] appel Bash : ls -la && wc -l *.csv…</p>
+<p class="h after" data-pause="350">[outil]&#160;&#160;total 56 … (+19 lignes)</p>
+<p class="m after" data-pause="350">[modèle] appel Skill : dataviz</p>
+<p class="h after" data-pause="350">[outil]&#160;&#160;Launching skill: dataviz</p>
+<p class="m after" data-pause="350">[modèle] appel Write : build_report.py</p>
+<p class="h after" data-pause="350">[outil]&#160;&#160;File created successfully</p>
+<p class="m after" data-pause="350">[modèle] appel Bash : python3 build_report.py…</p>
+<p class="h after" data-pause="350">[outil]&#160;&#160;refusé : requires approval</p>
+<p class="c after" data-pause="350">… 14 tours au total</p>
+<p class="m after" data-pause="350">[modèle] Sur les 200 puces, 19 sont hors…</p>
+</div>
+</div>
+<p class="cap">À gauche l’interface, à droite la liste de messages qui grandit à chaque tour. Les résultats d’outils sont écrits par le harnais.</p>
+<div class="foot"><div class="fl"><svg class="km" viewBox="0 4 89.98 24" aria-hidden="true"><path d="M4 4V13.01L8.4 4H12.97L8.2 15.5L12.97 28H8.5L5.58 19.5L4 22.49V28H0V4ZM26.99 4V8H20V13.98H25.98V17.98H20V24H26.99V28H16V4ZM29.98 28V4H34.55L38.96 18.99V4H42.96V28H38.39L33.98 13.01V28ZM53.98 10.99V9.98Q53.98 8 51.98 8Q49.98 8 49.98 9.98V12Q49.98 13.98 51.97 13.98Q54.45 13.98 56.22 15.75Q57.98 17.51 57.98 20V21.98Q57.98 24.47 56.22 26.24Q54.45 28 51.97 28Q49.48 28 47.73 26.24Q45.98 24.47 45.98 21.98V21.01H49.98V21.98Q49.98 24 51.98 24Q53.98 24 53.98 21.98V20Q53.98 17.98 51.97 17.98Q49.48 17.98 47.73 16.24Q45.98 14.49 45.98 12V9.98Q45.98 7.53 47.73 5.76Q49.48 4 51.97 4Q54.45 4 56.22 5.76Q57.98 7.53 57.98 9.98V10.99ZM60.97 28V13.98L59.97 9.98L60.97 4H68.97L70.96 5.98L75.97 28H71.97L70.96 22.99H64.97V28ZM64.97 8V18.99H69.95L66.96 8ZM89.98 4V8H82.99V13.98H88.97V17.98H82.99V24H89.98V28H78.99V4Z"/></svg><p>4 · La boucle</p></div><p class="pn"></p></div>
+<aside class="notes">Vraie session Claude Code du 21 novembre 2026 sur les données de la démo 1 : 14 tours, 2 min 20, 19 puces hors limites trouvées. À droite, les messages de cette session, abrégés : chaque appel d’outil du modèle, chaque résultat renvoyé par le harnais. On y voit la skill « dataviz » chargée par le modèle et un refus des permissions.</aside>
+</section>

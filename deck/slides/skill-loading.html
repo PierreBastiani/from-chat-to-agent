@@ -1,0 +1,19 @@
+<section id="skill-loading">
+<h2>If we had to code it · skills</h2>
+<div class="code long">
+<p class="chead"><span>Harness pseudo-code</span><span>version 6 / 7</span></p>
+<p class="n">at startup:</p>
+<p class="n">&#160;&#160;&#160;&#160;for each folder in skills/:</p>
+<p class="n">&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;system += name + ": " + description</p>
+<p>&#160;</p>
+<p class="c"># during the loop, nothing new:</p>
+<p class="c">#&#160;&#160;&#160;the model decides a skill is useful</p>
+<p class="c">#&#160;&#160;&#160;→ it calls read("skills/rapport-lot/SKILL.md")</p>
+<p class="c">#&#160;&#160;&#160;→ the file goes into the text, it follows the steps</p>
+<p>&#160;</p>
+<p class="c"># by hand, same effect: "read this file and follow it"</p>
+</div>
+<p class="cap">The added lines are in orange. The harness loads only the table of contents, so twenty skills cost twenty lines at the start.</p>
+<div class="foot"><div class="fl"><svg class="km" viewBox="0 4 89.98 24" aria-hidden="true"><path d="M4 4V13.01L8.4 4H12.97L8.2 15.5L12.97 28H8.5L5.58 19.5L4 22.49V28H0V4ZM26.99 4V8H20V13.98H25.98V17.98H20V24H26.99V28H16V4ZM29.98 28V4H34.55L38.96 18.99V4H42.96V28H38.39L33.98 13.01V28ZM53.98 10.99V9.98Q53.98 8 51.98 8Q49.98 8 49.98 9.98V12Q49.98 13.98 51.97 13.98Q54.45 13.98 56.22 15.75Q57.98 17.51 57.98 20V21.98Q57.98 24.47 56.22 26.24Q54.45 28 51.97 28Q49.48 28 47.73 26.24Q45.98 24.47 45.98 21.98V21.01H49.98V21.98Q49.98 24 51.98 24Q53.98 24 53.98 21.98V20Q53.98 17.98 51.97 17.98Q49.48 17.98 47.73 16.24Q45.98 14.49 45.98 12V9.98Q45.98 7.53 47.73 5.76Q49.48 4 51.97 4Q54.45 4 56.22 5.76Q57.98 7.53 57.98 9.98V10.99ZM60.97 28V13.98L59.97 9.98L60.97 4H68.97L70.96 5.98L75.97 28H71.97L70.96 22.99H64.97V28ZM64.97 8V18.99H69.95L66.96 8ZM89.98 4V8H82.99V13.98H88.97V17.98H82.99V24H89.98V28H78.99V4Z"/></svg><p>5 · Skills</p></div><p class="pn"></p></div>
+<aside class="notes">To take the mystery out: a skill is what you would do by hand when you say “read this file and follow it”. There is no new mechanism; the skill uses the “read” tool from version 3. The harness only adds the table of contents to the system prompt. That is why you can have many skills without filling the context window. In the real session of demo 1, you can see Claude Code load the “dataviz” skill on its own.</aside>
+</section>

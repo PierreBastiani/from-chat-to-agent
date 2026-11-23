@@ -1,0 +1,23 @@
+<section id="loop-diagram" class="dark">
+<h2>La boucle agentique</h2>
+<div class="loopwrap">
+<div class="row">
+<div class="card flex1 after" data-pause="450"><p class="tag">1</p><h3>Réfléchir</h3><p>Le modèle relit tout le texte et choisit un outil.</p></div>
+<svg class="arr after" data-pause="250" viewBox="0 0 72 36" aria-hidden="true"><path d="M0 12H44V0L72 18L44 36V24H0Z"/></svg>
+<div class="card flex1 after" data-pause="450"><p class="tag">2</p><h3>Agir</h3><p>Le harnais exécute l’appel : commande, lecture, écriture.</p></div>
+<svg class="arr after" data-pause="250" viewBox="0 0 72 36" aria-hidden="true"><path d="M0 12H44V0L72 18L44 36V24H0Z"/></svg>
+<div class="card flex1 after" data-pause="450"><p class="tag">3</p><h3>Observer</h3><p>Le résultat est ajouté au texte.</p></div>
+</div>
+<div class="backloop after" data-pause="500">
+<svg viewBox="0 0 1664 96" width="1664" height="96" aria-hidden="true"><path d="M1427 0V64H237V14" fill="none" stroke-width="3"/><path d="M225 18L237 0L249 18Z"/></svg>
+<p>↺ on recommence tant que le modèle appelle un outil</p>
+</div>
+<div class="stopline after" data-pause="700">
+<svg viewBox="0 0 24 64" width="24" height="64" aria-hidden="true"><path d="M12 64V14" fill="none" stroke-width="3"/><path d="M0 18L12 0L24 18Z"/></svg>
+<p class="stop">Pas d’appel d’outil → réponse finale, fin de la boucle</p>
+</div>
+</div>
+<p class="cap after" data-pause="500">Une vraie tâche prend souvent des dizaines de tours.</p>
+<div class="foot"><div class="fl"><svg class="km" viewBox="0 4 89.98 24" aria-hidden="true"><path d="M4 4V13.01L8.4 4H12.97L8.2 15.5L12.97 28H8.5L5.58 19.5L4 22.49V28H0V4ZM26.99 4V8H20V13.98H25.98V17.98H20V24H26.99V28H16V4ZM29.98 28V4H34.55L38.96 18.99V4H42.96V28H38.39L33.98 13.01V28ZM53.98 10.99V9.98Q53.98 8 51.98 8Q49.98 8 49.98 9.98V12Q49.98 13.98 51.97 13.98Q54.45 13.98 56.22 15.75Q57.98 17.51 57.98 20V21.98Q57.98 24.47 56.22 26.24Q54.45 28 51.97 28Q49.48 28 47.73 26.24Q45.98 24.47 45.98 21.98V21.01H49.98V21.98Q49.98 24 51.98 24Q53.98 24 53.98 21.98V20Q53.98 17.98 51.97 17.98Q49.48 17.98 47.73 16.24Q45.98 14.49 45.98 12V9.98Q45.98 7.53 47.73 5.76Q49.48 4 51.97 4Q54.45 4 56.22 5.76Q57.98 7.53 57.98 9.98V10.99ZM60.97 28V13.98L59.97 9.98L60.97 4H68.97L70.96 5.98L75.97 28H71.97L70.96 22.99H64.97V28ZM64.97 8V18.99H69.95L66.96 8ZM89.98 4V8H82.99V13.98H88.97V17.98H82.99V24H89.98V28H78.99V4Z"/></svg><p>4 · La boucle</p></div><p class="pn"></p></div>
+<aside class="notes">Un agent, c’est un modèle dans cette boucle, avec des outils. La condition d’arrêt est en haut : quand le modèle répond sans appeler d’outil, le harnais rend la main. Exemple concret : « lance la simulation et corrige l’erreur ». Tour 1, il lance make sim. Tour 2, il lit le log. Tour 3, il ouvre le fichier fautif. Tour 4, il le modifie. Tour 5, il relance. Tour 6, plus d’erreur, il répond sans outil et la boucle s’arrête.</aside>
+</section>

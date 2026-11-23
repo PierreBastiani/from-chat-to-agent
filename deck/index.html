@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>From chat to agent</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="preload" href="fonts/hanken-grotesk-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="fonts/geist-mono-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="vendor/reset.css">
+<link rel="stylesheet" href="vendor/reveal.css">
+<link rel="stylesheet" href="deck.css">
+</head>
+<body>
+<div class="reveal"><div class="slides"></div></div>
+<script src="vendor/reveal.js"></script>
+<script src="vendor/notes/notes.js"></script>
+<script>
+// Slides live one per file in slides/, in the order of slides/order.json.
+(async () => {
+  // ?lang=fr loads the French slides from slides-fr/ (same ids, same order).
+  const fr = new URLSearchParams(location.search).get('lang') === 'fr';
+  const dir = fr ? 'slides-fr' : 'slides';
+  if (fr) { document.documentElement.lang = 'fr'; document.title = 'Du chat à l’agent'; }
+  const order = await (await fetch(`${dir}/order.json`, { cache: 'no-store' })).json();
+  const box = document.querySelector('.reveal .slides');
+  const parts = await Promise.all(order.map(id => fetch(`${dir}/${id}.html`, { cache: 'no-store' }).then(r => r.text())));
+  box.innerHTML = parts.join('\n');
+  box.querySelectorAll(':scope > section').forEach((s, i) => s.querySelectorAll('.pn').forEach(p => { p.textContent = i + 1; }));
+  await document.fonts.ready;
+  Reveal.initialize({
+    width: 1920, height: 1080, margin: 0, minScale: 0.1, maxScale: 4,
+    center: false, display: 'flex', hash: true, controls: false, progress: true,
+    transition: 'fade', transitionSpeed: 'fast', plugins: [RevealNotes],
+  });
+
+  // Arrival animations, played in document order once the slide is shown:
+  //   .stream  text typed out a few characters at a time, like a model generating
+  //   .after   element that fades in
+  // data-pause (ms) waits before that element. Leaving the slide stops the sequence.
+  // On pseudo-code slides (a .chead band), the orange added lines (.n) become .after on
+  // their own, so the base code shows first and the new lines arrive after it.
+  const printing = /print-pdf/.test(location.search);
+  const TOKEN_MS = 75;
+  box.querySelectorAll(':scope > section').forEach(s => {
+    if (!s.querySelector('.chead')) return;
+    s.querySelectorAll('.code .n').forEach((n, k) => {
+      n.classList.add('after');
+      n.dataset.pause ??= k === 0 ? 900 : 350;
+    });
+  });
+  function play(slide) {
+    if (!slide) return;
+    const seq = [...slide.querySelectorAll('.stream, .after')];
+    if (!seq.length) return;
+    if (printing) { seq.forEach(e => e.classList.add('shown')); return; }
+    const run = slide._run = (slide._run || 0) + 1;
+    const live = () => slide._run === run;
+    seq.forEach(e => {
+      if (e.classList.contains('stream')) { e.dataset.full ??= e.textContent; e.textContent = ''; }
+      else e.classList.remove('shown');
+    });
+    let i = 0;
+    const next = () => {
+      if (!live() || i >= seq.length) return;
+      const e = seq[i++];
+      const wait = +(e.dataset.pause || 0);
+      if (!e.classList.contains('stream')) {
+        setTimeout(() => { if (live()) { e.classList.add('shown'); next(); } }, wait);
+        return;
+      }
+      const tokens = e.dataset.full.match(/\s*\S{1,4}/g) || [];
+      let k = 0;
+      const tick = () => {
+        if (!live()) return;
+        if (k < tokens.length) { e.textContent += tokens[k++]; setTimeout(tick, TOKEN_MS); }
+        else { e.classList.remove('typing'); setTimeout(next, 120); }
+      };
+      setTimeout(() => { if (live()) { e.classList.add('typing'); tick(); } }, wait);
+    };
+    setTimeout(next, 600);
+  }
+  function stop(slide) {
+    if (!slide) return;
+    slide._run = (slide._run || 0) + 1;
+    slide.querySelectorAll('.stream').forEach(e => { if (e.dataset.full) e.textContent = e.dataset.full; e.classList.remove('typing'); });
+    slide.querySelectorAll('.after').forEach(e => e.classList.add('shown'));
+  }
+  Reveal.on('slidechanged', ev => { stop(ev.previousSlide); play(ev.currentSlide); });
+  Reveal.on('ready', ev => play(ev.currentSlide));
+})();
+</script>
+</body>
+</html>

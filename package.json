@@ -1,0 +1,15 @@
+{
+  "name": "from-chat-to-agent",
+  "private": true,
+  "description": "A talk that rebuilds an agent harness in pseudo-code, one layer at a time, as a reveal.js deck.",
+  "scripts": {
+    "serve": "python3 -m http.server 8000",
+    "preview": "node tools/preview.js",
+    "pptx": "node tools/export_pptx.js",
+    "video": "node tools/make_video.js"
+  },
+  "devDependencies": {
+    "playwright": "1.49.1",
+    "pptxgenjs": "3.12.0"
+  }
+}

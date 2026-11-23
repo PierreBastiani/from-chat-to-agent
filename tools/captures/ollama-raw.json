@@ -1,0 +1,70 @@
+{
+  "title": "Ollama · raw completion",
+  "right": "21/11/2026",
+  "width": 1100,
+  "lines": [
+    {
+      "t": "$ llama3.2 1B base · raw mode · no stop sequence",
+      "c": "dim"
+    },
+    {
+      "t": "Question: What is a resistor?",
+      "c": "prompt"
+    },
+    {
+      "t": "Answer: A component that opposes the flow of current.",
+      "c": "prompt"
+    },
+    {
+      "t": "Question: What is a netlist?",
+      "c": "prompt"
+    },
+    {
+      "s": [
+        {
+          "t": "Answer:",
+          "c": "prompt"
+        },
+        {
+          "t": " A list of components and their connections.",
+          "c": "model"
+        }
+      ]
+    },
+    {
+      "t": "Question: What is a schematic?",
+      "c": "model"
+    },
+    {
+      "t": "Answer: A diagram of the components and their connections.",
+      "c": "model"
+    },
+    {
+      "t": "… (it keeps going until 90 tokens)",
+      "c": "dim"
+    },
+    {
+      "t": ""
+    },
+    {
+      "t": "$ same text, stop = \"\\nQuestion\"",
+      "c": "dim"
+    },
+    {
+      "s": [
+        {
+          "t": "Answer:",
+          "c": "prompt"
+        },
+        {
+          "t": " A list of components and their connections.",
+          "c": "model"
+        }
+      ]
+    },
+    {
+      "t": "(end: stop, the harness cut here)",
+      "c": "harness"
+    }
+  ]
+}

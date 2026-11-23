@@ -1,0 +1,21 @@
+<section id="mcp-pseudo">
+<h2>Si on devait le coder · les serveurs MCP</h2>
+<div class="code long">
+<p class="chead"><span>Pseudo-code du harnais</span><span>version 5 / 7</span></p>
+<p>outils = [bash, lire, écrire, chercher]</p>
+<p class="n">pour chaque serveur dans mcp_config :</p>
+<p class="n">&#160;&#160;&#160;&#160;outils += serveur.liste_outils()&#160;&#160;<span class="c"># un nom et une description par outil</span></p>
+<p>messages = [système, user(tâche)]</p>
+<p>répéter :</p>
+<p>&#160;&#160;&#160;&#160;réponse = modèle(messages, outils)</p>
+<p>&#160;&#160;&#160;&#160;messages += réponse</p>
+<p>&#160;&#160;&#160;&#160;si réponse n'appelle aucun outil : afficher(réponse.texte) ; arrêter</p>
+<p>&#160;&#160;&#160;&#160;pour chaque appel dans réponse.appels :</p>
+<p class="n">&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;si appel.serveur :</p>
+<p class="n">&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;résultat = appel.serveur.exécuter(appel)&#160;&#160;<span class="c"># il vérifie les droits</span></p>
+<p>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;<span class="n">sinon :</span> résultat = exécuter(appel)&#160;&#160;<span class="c"># permissions de la version 4</span></p>
+<p>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;messages += résultat_outil(appel, résultat)</p>
+</div>
+<div class="foot"><div class="fl"><svg class="km" viewBox="0 4 89.98 24" aria-hidden="true"><path d="M4 4V13.01L8.4 4H12.97L8.2 15.5L12.97 28H8.5L5.58 19.5L4 22.49V28H0V4ZM26.99 4V8H20V13.98H25.98V17.98H20V24H26.99V28H16V4ZM29.98 28V4H34.55L38.96 18.99V4H42.96V28H38.39L33.98 13.01V28ZM53.98 10.99V9.98Q53.98 8 51.98 8Q49.98 8 49.98 9.98V12Q49.98 13.98 51.97 13.98Q54.45 13.98 56.22 15.75Q57.98 17.51 57.98 20V21.98Q57.98 24.47 56.22 26.24Q54.45 28 51.97 28Q49.48 28 47.73 26.24Q45.98 24.47 45.98 21.98V21.01H49.98V21.98Q49.98 24 51.98 24Q53.98 24 53.98 21.98V20Q53.98 17.98 51.97 17.98Q49.48 17.98 47.73 16.24Q45.98 14.49 45.98 12V9.98Q45.98 7.53 47.73 5.76Q49.48 4 51.97 4Q54.45 4 56.22 5.76Q57.98 7.53 57.98 9.98V10.99ZM60.97 28V13.98L59.97 9.98L60.97 4H68.97L70.96 5.98L75.97 28H71.97L70.96 22.99H64.97V28ZM64.97 8V18.99H69.95L66.96 8ZM89.98 4V8H82.99V13.98H88.97V17.98H82.99V24H89.98V28H78.99V4Z"/></svg><p>4 · La boucle</p></div><p class="pn"></p></div>
+<aside class="notes">MCP veut dire Model Context Protocol. Un serveur MCP, c’est une API, une porte d’entrée vers un service (une base de specs, un lanceur de simulations, Confluence), présentée au format que les harnais savent lire : pour chaque outil, un nom et une description. Le harnais ajoute ces outils à la liste, et le modèle les appelle exactement comme bash ou lire. La différence est de l’autre côté : c’est le serveur qui exécute, et c’est lui qui vérifie qui demande, ce qui est permis, et qui garde le journal des appels. C’est plus sûr que de laisser l’agent se connecter en SSH avec les droits de l’utilisateur. Le protocole est public et implémenté par tous les harnais : un service écrit son serveur une fois, et tout le monde peut le brancher.</aside>
+</section>
